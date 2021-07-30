@@ -29,7 +29,7 @@ img {
 .App {
   display: flex;
   max-width: 500px;
-  max-height: 800px;
+  max-height: 1100px;
   flex-direction: column;
   background: #fff;
   height: 100vh;
