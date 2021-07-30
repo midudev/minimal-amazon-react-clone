@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: radial-gradient(#ddd .5px, transparent .5px),radial-gradient(#ddd .5px, transparent .5px);
+  background-image: radial-gradient(#eee .5px, transparent .5px),radial-gradient(#eee .5px, transparent .5px);
   background-size: calc(20 * .5px) calc(20 * .5px);
   background-position: 0 0,calc(10 * .5px) calc(10 * .5px);
   display: grid;
@@ -29,12 +29,13 @@ img {
 .App {
   display: flex;
   max-width: 500px;
-  max-height: 740px;
+  max-height: 800px;
   flex-direction: column;
   background: #fff;
   height: 100vh;
   width: 100vw;
-  box-shadow: 0 0 25px rgb(0, 0, 0, .1);
+  box-shadow: 0 0 50px rgb(0, 0, 0, .4);
+  overflow: auto;
 }
 
 .Header {
@@ -113,8 +114,10 @@ img {
   color: #f90;
   position: absolute;
   top: -2px;
-  left: 16px;
+  left: 11px;
   margin: auto;
+  width: 22px;
+  text-align: center;
 }
 
 .SearchResults {
@@ -142,6 +145,12 @@ img {
 .SearchResults-match em {
   font-weight: 400;
   font-style: normal;
+}
+
+.Title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
 }
 
 .Subtitle {
@@ -241,3 +250,17 @@ img {
   font-size: 21px;
 }
 
+.CartPage--empty {
+  display: flex;
+  align-items: center;
+}
+
+.CartPage-item {
+  display: flex;
+  gap: 20px;
+}
+
+.CartPage-itemImage {
+  max-width: 100px;
+  object-fit: contain;
+}

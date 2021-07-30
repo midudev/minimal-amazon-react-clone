@@ -1,43 +1,62 @@
 import { useAtom } from 'jotai'
-import { useCallback } from 'react'
 import { cartAtom } from '@/state/cart'
 
 export default function useCart () {
   const [cart, setCart] = useAtom(cartAtom)
 
-  const addToCart = useCallback((product) => {
-    const productInCart = cart.get(product.objectID)
+  const addToCart = (product) => {
+    const { objectID } = product
+    const productInCart = cart[objectID]
 
-    const quantity = productInCart
-      ? productInCart.quantity + 1
-      : 1
+    if (productInCart) {
+      return changeQuantityProductCart({ objectID, quantity: productInCart.quantity + 1 })
+    }
 
-    cart.set(product.objectID, {
-      ...product,
-      quantity
-    })
+    setCart(cart => ({
+      ...cart,
+      [objectID]: {
+        ...product,
+        quantity: 1
+      }
+    }))
+  }
 
-    setCart(cart)
-  }, [])
+  const changeQuantityProductCart = ({ objectID, quantity }) => {
+    const productInCart = cart[objectID]
+    console.log({ quantity, productInCart })
 
-  const changeQuantityProductCart = useCallback(({ objectID, quantity }) => {
-    const productInCart = cart.get(objectID)
-    cart.set(objectID, {
-      ...productInCart,
-      quantity
-    })
-  }, [])
+    if (quantity === 0) {
+      return removeFromCart({ objectID })
+    }
 
-  const removeFromCart = useCallback((objectID) => {
-    cart.delete(objectID)
-  }, [])
+    setCart(cart => ({
+      ...cart,
+      [objectID]: {
+        ...productInCart,
+        quantity
+      }
+    }))
+  }
 
-  const getCartSize = useCallback(() => cart.size, [])
+  const removeFromCart = (objectID) => {
+    const { [objectID]: productToRemove, ...restOfCart } = cart
+    setCart(restOfCart)
+  }
+
+  const getCartSize = () => {
+    let quantity = 0
+    console.log({ cart, object: Object.values(cart) })
+
+    Object.values(cart)
+      .forEach(({ quantity: productQuantity }) => (quantity += productQuantity))
+
+    return quantity
+  }
 
   return {
-    cart,
     addToCart,
     changeQuantityProductCart,
+    cart,
     getCartSize,
     removeFromCart
   }

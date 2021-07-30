@@ -1,13 +1,22 @@
 import React from 'react'
 import useSearch from '@/hooks/useSearch'
 import Container from '@/components/Container.jsx'
+import useCart from '@/hooks/useCart.js'
 
 export default function Detail ({ params }) {
   const { id } = params
+
   const { results } = useSearch({ query: id, limit: 1, restrictToId: true })
+  const { addToCart } = useCart()
+
   if (results === null) return null
 
-  const [{ title, description, image, price }] = results
+  const [product] = results
+  const { title, description, image, price } = product
+
+  const handleAddToCartClick = () => {
+    addToCart(product)
+  }
 
   return (
     <div className='Detail'>
@@ -22,7 +31,7 @@ export default function Detail ({ params }) {
             {price} €
           </span>
         </div>
-        <button className='Detail-addToCart'>
+        <button className='Detail-addToCart' onClick={handleAddToCartClick}>
           Añadir a la cesta
         </button>
       </Container>
