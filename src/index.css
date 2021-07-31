@@ -256,11 +256,65 @@ img {
 }
 
 .CartPage-item {
+  padding: 4px 4px 18px;
+  border-bottom: 1px solid #ddd;
+}
+
+.CartPage-itemInfo {
   display: flex;
   gap: 20px;
+}
+
+.CartPage-itemTitle {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.CartPage-itemStock {
+  color: #007600;
+  font-size: 14px;
 }
 
 .CartPage-itemImage {
   max-width: 100px;
   object-fit: contain;
+}
+
+.Button {
+  -webkit-tap-highlight-color: transparent;
+  background: #FFF;
+  border-color: #D5D9D9;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: .1rem;
+  box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+  cursor: pointer;
+  display: block;
+  line-height: 1.4;
+  font-size: 13px;
+  padding: 8px 12px 7px 13px;
+  text-align: center;
+  text-decoration: none!important;
+  vertical-align: middle;
+}
+
+.Price {
+  font-weight: 700;
+  position: relative;
+}
+
+.Price-symbol {
+  font-size: 13px;
+  position: relative;
+  top: -5px;
+}
+
+.Price-whole {
+  font-size: 22px;
+}
+
+.Price-fraction {
+  position: relative;
+  top: -4px;
 }

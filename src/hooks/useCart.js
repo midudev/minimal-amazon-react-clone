@@ -45,7 +45,6 @@ export default function useCart () {
 
   const getCartSize = () => {
     let quantity = 0
-    console.log({ cart, object: Object.values(cart) })
 
     Object.values(cart)
       .forEach(({ quantity: productQuantity }) => (quantity += productQuantity))
@@ -53,11 +52,23 @@ export default function useCart () {
     return quantity
   }
 
+  const getCartSubtotal = () => {
+    let subtotal = 0
+
+    Object.values(cart)
+      .forEach(({ quantity, price }) => {
+        subtotal += quantity * price
+      })
+
+    return subtotal
+  }
+
   return {
     addToCart,
     changeQuantityProductCart,
     cart,
     getCartSize,
+    getCartSubtotal,
     removeFromCart
   }
 }
