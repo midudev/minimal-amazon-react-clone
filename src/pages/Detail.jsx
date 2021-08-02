@@ -5,6 +5,7 @@ import useCart from '@/hooks/useCart.js'
 import useAlgoliaInsights from '../hooks/useAlgoliaInsights.js'
 import useGetFrequentlyBoughtTogether from '../hooks/useGetFrequentlyBoughtTogether.js'
 import useRelatedProducts from '../hooks/useRelatedProducts.js'
+import { Link } from 'wouter'
 
 export default function Detail ({ params }) {
   const { id } = params
@@ -52,9 +53,11 @@ export default function Detail ({ params }) {
         <div className='Recommendations'>
           {relatedProducts && relatedProducts.map(({ objectID, name, image_link: image }) => {
             return (
-              <a key={objectID} href={`/dp/${objectID}`}>
-                <img src={image} alt={name} />
-              </a>
+              <Link key={objectID} href={`/dp/${objectID}`}>
+                <a>
+                  <img src={image} alt={name} />
+                </a>
+              </Link>
             )
           })}
         </div>
@@ -65,9 +68,11 @@ export default function Detail ({ params }) {
         <div className='Recommendations'>
           {frequentlyBoughtTogether && frequentlyBoughtTogether.map(({ objectID, name, image_link: image }) => {
             return (
-              <a key={objectID} href={`/dp/${objectID}`}>
-                <img src={image} alt={name} />
-              </a>
+              <Link key={objectID} href={`/dp/${objectID}`}>
+                <a>
+                  <img src={image} alt={name} />
+                </a>
+              </Link>
             )
           })}
         </div>

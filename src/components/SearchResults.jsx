@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'wouter'
 
 export default function SearchResults ({ results }) {
   if (!results || !results.length > 0) return null
@@ -13,9 +14,11 @@ export default function SearchResults ({ results }) {
       {
         results.map(result => (
           <li key={result.objectID} className='SearchResults-item'>
-            <a className='SearchResults-anchor' href={`/dp/${result.objectID}`}>
-              {renderHighlightResult(result)}
-            </a>
+            <Link href={`/dp/${result.objectID}`}>
+              <a className='SearchResults-anchor'>
+                {renderHighlightResult(result)}
+              </a>
+            </Link>
           </li>
         ))
       }

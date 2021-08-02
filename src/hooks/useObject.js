@@ -6,7 +6,7 @@ export default function useObject (objectID) {
 
   useEffect(() => {
     getObjectService(objectID).then(setObject)
-  }, [])
+  }, [objectID])
 
   return {
     object

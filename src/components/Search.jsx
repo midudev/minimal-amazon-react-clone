@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Icon from '@/components/Icon.jsx'
 import SearchResults from './SearchResults.jsx'
 import useSearch from '../hooks/useSearch.js'
+import { useLocation } from 'wouter'
 
 export default function Search () {
-  const { results, performSearch } = useSearch({ allowEmpty: false })
+  const { results, performSearch, cleanSearch } = useSearch({ allowEmpty: false })
+  const [pathname] = useLocation()
+  const inputRef = useRef()
 
   const handleChange = async (evt) => {
     const { value } = evt.target
     performSearch({ allowEmpty: false, query: value })
   }
+
+  useEffect(() => {
+    cleanSearch()
+    inputRef.current.value = ''
+  }, [pathname])
 
   return (
     <form className='Search'>
@@ -22,6 +30,7 @@ export default function Search () {
         autoCorrect='off'
         autoCapitalize='off' dir='auto'
         onChange={handleChange}
+        ref={inputRef}
       />
       <a
         tabIndex='0'

@@ -4,6 +4,8 @@ import { performSearch as performSearchService } from '../services/performSearch
 export default function useSearch (params = {}) {
   const [results, setResults] = useState({ hits: null, queryID: null })
 
+  const cleanSearch = () => setResults({ hits: null, queryID: null })
+
   const performSearch = (params) => {
     const { allowEmpty, query } = params
 
@@ -19,6 +21,7 @@ export default function useSearch (params = {}) {
   }, [])
 
   return {
+    cleanSearch,
     performSearch,
     results: results.hits,
     queryID: results.queryID
