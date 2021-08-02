@@ -318,3 +318,18 @@ img {
   position: relative;
   top: -4px;
 }
+
+.Recommendations {
+  margin: 0 30px 0 -15px;
+  display: flex;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: calc(100% + 30px);
+}
+
+.Recommendations a {
+  flex: 0 0 40%;
+  padding-right: 5px;
+  scroll-snap-align: center;
+}

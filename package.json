@@ -7,10 +7,12 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@algolia/recommend": "4.10.3",
     "algoliasearch": "4.10.3",
     "jotai": "1.2.2",
     "react": "17.0.0",
     "react-dom": "17.0.0",
+    "search-insights": "2.0.2",
     "wouter": "2.7.4"
   },
   "devDependencies": {
