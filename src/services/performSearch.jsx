@@ -1,18 +1,24 @@
 import algoliasearch from 'algoliasearch'
 
-const client = algoliasearch('35T510Q9UB', '7845d79ac90abdc02889c9fcde6efb95')
-const index = client.initIndex('miduzon')
+const {
+  VITE_ALGOLIA_APP_ID,
+  VITE_ALGOLIA_API_KEY,
+  VITE_ALGOLIA_INDEX_NAME
+} = import.meta.env
 
-export async function performSearch ({ query = '', limit = 5, restrictToId = false }) {
+const client = algoliasearch(VITE_ALGOLIA_APP_ID, VITE_ALGOLIA_API_KEY)
+const index = client.initIndex(VITE_ALGOLIA_INDEX_NAME)
+
+export async function performSearch ({ query = '', limit = 5 }) {
   const options = {
     hitsPerPage: limit,
-    ...(
-      restrictToId
-        ? { restrictSearchableAttributes: ['objectID'] }
-        : false
-    )
+    clickAnalytics: true
   }
 
-  const { hits } = await index.search(query, options)
-  return hits
+  const { hits, queryID } = await index.search(query, options)
+  return { hits, queryID }
+}
+
+export async function getObject (objectID) {
+  return await index.getObject(objectID)
 }

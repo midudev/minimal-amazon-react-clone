@@ -17,7 +17,7 @@ export default function CartPage () {
       <Container>
         <div className='CartPage--empty'>
           <EmptyCart />
-          <Title as='h2'>Tu cesta de Amazon está vacía
+          <Title as='h2'>Tu cesta de Miduzon está vacía
           </Title>
         </div>
       </Container>
@@ -30,9 +30,9 @@ export default function CartPage () {
       {Object.values(cart).map(product => (
         <div className='CartPage-item' key={product.objectID}>
           <div className='CartPage-itemInfo'>
-            <img className='CartPage-itemImage' src={product.image} alt={product.title} />
+            <img className='CartPage-itemImage' src={product.image_link} alt={product.title} />
             <div>
-              <h4 className='CartPage-itemTitle'>{product.title}</h4>
+              <h4 className='CartPage-itemTitle'>{product.name}</h4>
               <Price price={product.price} />
               <p className='CartPage-itemStock'>En stock</p>
               <p>Cantidad: {product.quantity}</p>
