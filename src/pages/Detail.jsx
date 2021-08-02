@@ -1,28 +1,25 @@
 import React from 'react'
-import useSearch from '@/hooks/useSearch'
+import useObject from '@/hooks/useObject'
 import Container from '@/components/Container.jsx'
 import useCart from '@/hooks/useCart.js'
 
 export default function Detail ({ params }) {
   const { id } = params
-
-  const { results } = useSearch({ query: id, limit: 1, restrictToId: true })
+  const { object } = useObject(id)
   const { addToCart } = useCart()
 
-  if (results === null) return null
-
-  const [product] = results
-  const { title, description, image, price } = product
+  if (object === null) return null
+  const { name, description, image_link: image, price } = object
 
   const handleAddToCartClick = () => {
-    addToCart(product)
+    addToCart(object)
   }
 
   return (
     <div className='Detail'>
       <Container>
         <p className='Detail-description'>{description}</p>
-        <img className='Detail-image' src={image} alt={title} />
+        <img className='Detail-image' src={image} alt={name} />
         <div className='Detail-priceContainer'>
           <div>
             Precio:
