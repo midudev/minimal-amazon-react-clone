@@ -4,8 +4,8 @@ export default function SearchResults ({ results }) {
   if (!results || !results.length > 0) return null
 
   const renderHighlightResult = result => {
-    const { _highlightResult: { title } } = result
-    return <span className='SearchResults-match' dangerouslySetInnerHTML={{ __html: title.value }} />
+    const { _highlightResult: { name } } = result
+    return <span className='SearchResults-match' dangerouslySetInnerHTML={{ __html: name.value }} />
   }
 
   return (
